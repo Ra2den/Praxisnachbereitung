@@ -1,9 +1,7 @@
 import csv
 
-# Set your file path here
-file_path = "/Users/main/Documents/Praxisnachbereitung/excel/Gesamt.csv"
+file_path = "excel/Gesamt.csv"
 
-# Read and display the CSV
 with open(file_path, "r") as file:
     reader = csv.reader(file)
     
