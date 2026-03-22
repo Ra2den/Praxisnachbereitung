@@ -1,39 +1,39 @@
 
 ```mermaid
 erDiagram
-    Employee ||--o{ Assignment : "performs"
-    Device ||--o{ Assignment : "is assigned in"
-    Category ||--o{ Device : "classifies"
+    Mitarbeiter ||--o{ Zuweisung : "leiht aus"
+    Geraet ||--o{ Zuweisung : "wird zugewiesen"
+    Kategorie ||--o{ Geraet : "gruppiert"
 
-    Employee {
-        int employee_id PK
-        string personal_number UK
-        string first_name
-        string last_name
+    Mitarbeiter {
+        int mitarbeiter_id PK
+        string personalnummer UK
+        string vorname
+        string nachname
         string email UK
-        string department
+        string abteilung
     }
 
-    Device {
-        int device_id PK
-        string serial_number UK
-        string inventory_number UK
-        string model_name
-        int category_id FK
-        date purchase_date
-        string status "e.g., active, defective, retired"
+    Geraet {
+        int geraet_id PK
+        string seriennummer UK
+        string inventarnummer UK
+        string modellbezeichnung
+        int kategorie_id FK
+        date kaufdatum
+        string status "z.B. aktiv, defekt, ausgemustert"
     }
 
-    Category {
-        int category_id PK
-        string name UK "e.g., Laptop, Smartphone, Tablet"
+    Kategorie {
+        int kategorie_id PK
+        string name UK "z.B. Laptop, Smartphone"
     }
 
-    Assignment {
-        int assignment_id PK
-        int employee_id FK
-        int device_id FK
-        date start_date
-        date end_date "nullable"
-        string note
+    Zuweisung {
+        int zuweisung_id PK
+        int mitarbeiter_id FK
+        int geraet_id FK
+        date start_datum
+        date end_datum "leeres Feld = aktuell aktiv"
+        string anmerkung
     }
