@@ -1,39 +1,28 @@
 
 ```mermaid
 erDiagram
-    Mitarbeiter ||--o{ Zuweisung : "leiht aus"
-    Geraet ||--o{ Zuweisung : "wird zugewiesen"
-    Kategorie ||--o{ Geraet : "gruppiert"
+    Mitarbeiter ||--o{ Ausleihen : "leiht aus"
+    Geraete ||--o{ Ausleihen : "wird verliehen"
 
     Mitarbeiter {
-        int mitarbeiter_id PK
-        string personalnummer UK
-        string vorname
-        string nachname
-        string email UK
+        string mitarbeiter_id PK
+        string name
         string abteilung
+        string standort
     }
 
-    Geraet {
-        int geraet_id PK
-        string seriennummer UK
-        string inventarnummer UK
-        string modellbezeichnung
-        int kategorie_id FK
+    Geraete {
+        string geraetenummer PK
+        string geraetetyp
+        string modell
         date kaufdatum
-        string status "z.B. aktiv, defekt, ausgemustert"
+        float netto_kaufpreis
+        string standort
     }
 
-    Kategorie {
-        int kategorie_id PK
-        string name UK "z.B. Laptop, Smartphone"
-    }
-
-    Zuweisung {
-        int zuweisung_id PK
-        int mitarbeiter_id FK
-        int geraet_id FK
-        date start_datum
-        date end_datum "leeres Feld = aktuell aktiv"
-        string anmerkung
+    Ausleihen {
+        string geraetenummer FK
+        string mitarbeiter_id FK
+        date ausgabe_am
+        date rueckgabe_am
     }
